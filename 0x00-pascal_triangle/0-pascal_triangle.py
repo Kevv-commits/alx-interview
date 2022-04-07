@@ -1,12 +1,13 @@
-def pascal_triangle(n):
+def pascal_triangle (n):
     """
-    program to generate pascals triangle
+    pascals triangle
     """
     results = []
     if n <= 0:
         return results
     else:
         for i in range(n):
+            # a starter 1 in the row
             row = [1]
             if results:
                 last_row = results[-1]
