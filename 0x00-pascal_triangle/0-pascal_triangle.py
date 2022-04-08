@@ -2,23 +2,17 @@ def pascal_triangle (n):
     """
     pascals triangle
     """
+    # a container to collect the rows
+    results = []
     if n <= 0:
-        return []
-    
-    pascal_triangle = [0] * n
-
-    for i in range(n):
-        # define a row and fill first and last idx with 1
-        new_row = [0] * (i+1)
-        new_row[0] = 1
-        new_row[len(new_row) - 1] = 1
-        
-        for j in range(1, i):
-            if j > 0 and j < len(new_row):
-                a = pascal_triangle[i - 1][j]
-                b = pascal_triangle[i - 1][j - 1]
-                new_row[j] = a + b
-
-        pascal_triangle[i] = new_row
-
-    return pascal_triangle
+        return results
+    else:
+        for i in range(n):
+            # a starter 1 in the row
+            row = [1]
+            if results:
+                last_row = results[-1]
+                row.extend([sum(pair) for pair in zip(last_row, last_row[1:])])
+                row.append(1)
+            results.append(row)
+    return results
